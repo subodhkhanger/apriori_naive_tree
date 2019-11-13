@@ -1,4 +1,5 @@
 import csv, itertools, para
+import timeit
 
 
 def readCVSfile(filename):
@@ -208,9 +209,13 @@ def print_final_value(rules):
         left = ','.join(map(str, item[0]))
         right = ','.join(map(str, item[1]))
         print (' ==> '.join([left, right]))
+        
+    elapsed_time_secs = timeit.default_timer() - start_time
+    print("Program Executed in "+str(elapsed_time_secs))
     print('Total Rules Generated: ', len(rules))
 
 if __name__ == '__main__':
+    start_time = timeit.default_timer()
     transactions = readCVSfile('out1.csv')
   
     frequent = aprioriFrequentItemsets(transactions, para.SUPPORT)

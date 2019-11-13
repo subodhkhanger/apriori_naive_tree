@@ -1,6 +1,7 @@
 import itertools
 import csv
 import para
+import timeit
 
 def readCVSfile(f_name, max_attr=100):
     
@@ -120,6 +121,8 @@ def findMaximal(singles, support, confidence):
                         num += 1
 
     print('Total rules generated:', result)
+    elapsed_time_secs = timeit.default_timer() - start_time
+    print("Program Executed in "+str(elapsed_time_secs))
     return result
 
 
@@ -147,6 +150,6 @@ def apriori_simple_imp(prev_l, k):
     return result
 
 
-
+start_time = timeit.default_timer()
 data = readCVSfile('out1.csv')
 runApriori(data, para.SUPPORT, para.CONFIDENCE)
